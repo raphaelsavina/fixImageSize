@@ -28,7 +28,6 @@ reg4 = re.compile('width="([^"]*)"')
 
 # open HTML and split in lines
 input = open(filename, 'r').read().split('\n')
-lastline = len(input) - 1
 
 # search on each lines for the regex
 for lines in range(len(input)):
@@ -62,9 +61,8 @@ for lines in range(len(input)):
 			else:
 				#if width of PNG is larger than in HTML
 				#keep HTML width as it is
-				newWidth = widthHTML
 				#compute new height based on HTML width and ratio
-				newHeight = int(float(newWidth)/ratioImage)
+				newHeight = int(float(widthHTML)/ratioImage)
 				#insert in HTML code
 				input[lines] = re.sub(matchObj3.group(1),str(newHeight),input[lines])			
 
